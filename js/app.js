@@ -29,6 +29,7 @@ function createNavItem(id, name){
     const navItem = `<a class ="menu__link" data-id="${id}">${name}</a>`;
     return navItem;
 }
+// the following function was made with the help of https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
 function isInViewport(element) {
     const rect = element.getBoundingClientRect();
     return (

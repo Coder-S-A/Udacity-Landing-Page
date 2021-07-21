@@ -31,12 +31,12 @@ function createNavItem(id, name){
 }
 // the following function was made with the help of https://www.javascripttutorial.net/dom/css/check-if-an-element-is-visible-in-the-viewport/
 function isInViewport(element) {
-    const rect = element.getBoundingClientRect();
+    const { top, bottom } = element.getBoundingClientRect();
+    const vHeight = (window.innerHeight || document.documentElement.clientHeight);
+
     return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        (top > 0 || bottom > 0) &&
+        top < vHeight
     );
 }
 
@@ -74,6 +74,7 @@ function setToActive(){
 
 // Scroll to anchor ID using scrollTO event
 function scrollToSection(event) {
+    event.preventDefault();
     if(event.target.nodeName === "A"){
         const sectionId = event.target.getAttribute('data-id');
         const section = document.getElementById(sectionId);
